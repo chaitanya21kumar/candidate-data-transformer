@@ -6,9 +6,13 @@
  * the long tail of official names and alpha-3 codes. Unrecognized input returns `null`
  * — we never guess a country.
  */
-import * as countries from 'i18n-iso-countries';
+import * as countriesNs from 'i18n-iso-countries';
 import en from 'i18n-iso-countries/langs/en.json';
 import { ISO_COUNTRY } from '../patterns.js';
+
+// i18n-iso-countries is CommonJS; depending on the loader's interop it surfaces either
+// as the namespace or under `.default`. Normalize that here so it works everywhere.
+const countries = ((countriesNs as Record<string, unknown>)['default'] ?? countriesNs) as typeof countriesNs;
 
 countries.registerLocale(en as Parameters<typeof countries.registerLocale>[0]);
 

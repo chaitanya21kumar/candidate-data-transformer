@@ -86,7 +86,11 @@ export function buildProfile(cluster: readonly NormalizedField[]): ResolvedProfi
   emailGroups.forEach((g, i) => addProvenance(`emails[${i}]`, g));
   const phoneGroups = pickMulti(get('phone'));
   phoneGroups.forEach((g, i) => addProvenance(`phones[${i}]`, g));
-  const otherGroups = pickMulti(get('links.other'));
+  // "other" links exclude any URL already filed under a specific link slot.
+  const specificLinks = new Set(
+    [linkedin?.value, github?.value, portfolio?.value].filter((v): v is string => typeof v === 'string'),
+  );
+  const otherGroups = pickMulti(get('links.other')).filter((g) => !specificLinks.has(g.value as string));
   otherGroups.forEach((g, i) => addProvenance(`links.other[${i}]`, g));
 
   const skillGroups = pickMulti(get('skill'));
