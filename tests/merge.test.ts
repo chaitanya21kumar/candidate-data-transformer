@@ -145,4 +145,13 @@ describe('determinism', () => {
     expect(id1).toBe(id2);
     expect(id1).toMatch(/^cand_[0-9a-f]{16}$/);
   });
+
+  it('keeps candidate_id unique even for indistinguishable name-only records', () => {
+    // Two "John Doe" rows with no email/phone/company: not merged, and must not collide.
+    const sources: RawSource[] = [{ type: 'csv', name: 'r.csv', content: 'Name\nJohn Doe\nJohn Doe\n' }];
+    const profiles = merge(sources);
+    expect(profiles).toHaveLength(2);
+    const ids = profiles.map((p) => p.profile.candidate_id);
+    expect(new Set(ids).size).toBe(2); // distinct ids
+  });
 });

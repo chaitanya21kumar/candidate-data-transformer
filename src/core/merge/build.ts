@@ -364,7 +364,10 @@ function compareExperience(a: CanonicalExperience, b: CanonicalExperience): numb
 function identitySeed(name: string | undefined, experience: CanonicalExperience[]): string | null {
   if (!name) return null;
   const company = experience.find((e) => e.company)?.company;
-  return company ? `${nameKey(name)}|${foldCompany(company)}` : nameKey(name);
+  // Only seed from name when paired with a company — a name alone is not distinguishing,
+  // so two different name-only people would otherwise collide on candidate_id. Without a
+  // company we let the caller fall back to the (globally unique) record id.
+  return company ? `${nameKey(name)}|${foldCompany(company)}` : null;
 }
 
 function computeOverall(profile: CanonicalProfile, fieldConfidence: Record<string, number>): number {
