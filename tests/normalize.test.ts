@@ -58,6 +58,10 @@ describe('normalizePhone', () => {
     expect(normalizePhone('+91 96507 62045')).toBe('+919650762045');
     expect(normalizePhone('00 44 20 7946 0958')).toBe('+442079460958');
   });
+  it('strips a tel: scheme and ignores extensions', () => {
+    expect(normalizePhone('tel:+919650762045')).toBe('+919650762045');
+    expect(normalizePhone('+1 (415) 555-0150 x23', 'US')).toBe('+14155550150');
+  });
   it('resolves a local number only with a country hint', () => {
     expect(normalizePhone('9650762045', 'IN')).toBe('+919650762045');
   });

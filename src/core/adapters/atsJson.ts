@@ -16,12 +16,12 @@ import type {
   RawSource,
   SourceRef,
 } from '../types.js';
-import { isBlank, makeField } from './util.js';
+import { isBlank, makeField, stripBom } from './util.js';
 
 export function atsJsonAdapter(source: RawSource): ExtractedField[] {
   const fields: ExtractedField[] = [];
   try {
-    const parsed: unknown = JSON.parse(source.content);
+    const parsed: unknown = JSON.parse(stripBom(source.content));
     const records = extractRecords(parsed);
     records.forEach((record, index) => {
       if (!isObject(record)) return;

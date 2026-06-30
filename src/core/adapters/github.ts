@@ -10,7 +10,7 @@
  * company, location) and derives skills from the languages across non-fork repos.
  */
 import type { ExperienceInput, ExtractedField, RawSource } from '../types.js';
-import { isBlank, makeField } from './util.js';
+import { isBlank, makeField, stripBom } from './util.js';
 
 interface GithubUser {
   login?: string;
@@ -33,7 +33,7 @@ interface GithubRepo {
 export function githubAdapter(source: RawSource): ExtractedField[] {
   const fields: ExtractedField[] = [];
   try {
-    const parsed: unknown = JSON.parse(source.content);
+    const parsed: unknown = JSON.parse(stripBom(source.content));
     const { user, repos } = unwrap(parsed);
     if (!user) return fields;
 

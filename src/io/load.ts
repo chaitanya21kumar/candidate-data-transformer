@@ -38,7 +38,8 @@ export async function loadSources(paths: readonly string[]): Promise<LoadResult>
         continue;
       }
 
-      const content = await readFile(path, 'utf8');
+      const raw = await readFile(path, 'utf8');
+      const content = raw.charCodeAt(0) === 0xfeff ? raw.slice(1) : raw; // strip a leading BOM
       const type = detectType(name, ext, content);
       if (type === null) {
         skipped.push({ path, reason: `unrecognized source type for "${ext || name}"` });

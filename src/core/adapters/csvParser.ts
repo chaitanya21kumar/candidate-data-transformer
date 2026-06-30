@@ -9,6 +9,7 @@
  * It never throws: malformed input simply yields whatever rows could be read.
  */
 export function parseCsv(input: string): string[][] {
+  if (input.charCodeAt(0) === 0xfeff) input = input.slice(1); // strip a leading BOM
   const rows: string[][] = [];
   let field = '';
   let row: string[] = [];

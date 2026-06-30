@@ -34,6 +34,12 @@ export function splitList(value: string, opts?: { bullets?: boolean }): string[]
     .filter((part) => part.length > 0);
 }
 
+/** Strip a leading UTF-8 byte-order mark. Exported CSV/JSON files often carry one, and
+ *  `JSON.parse` throws on it — so we remove it before parsing. */
+export function stripBom(value: string): string {
+  return value.charCodeAt(0) === 0xfeff ? value.slice(1) : value;
+}
+
 /** True for strings that carry no real signal ("", "n/a", "null", "-", "unknown"). */
 export function isBlank(value: unknown): boolean {
   if (typeof value !== 'string') return value === null || value === undefined;

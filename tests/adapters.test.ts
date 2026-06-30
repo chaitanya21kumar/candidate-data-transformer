@@ -177,4 +177,12 @@ describe('robustness: garbage never crashes', () => {
       expect(Array.isArray(runAdapter(source))).toBe(true);
     }
   });
+
+  it('parses sources that begin with a UTF-8 BOM (common in exported files)', () => {
+    const bom = '﻿';
+    const csv = runAdapter({ type: 'csv', name: 'b.csv', content: `${bom}Name,Email\nAda,ada@x.io\n` });
+    expect(valuesFor(csv, 'full_name')).toEqual(['Ada']);
+    const ats = runAdapter({ type: 'ats_json', name: 'b.json', content: bom + JSON.stringify({ name: 'Ada', primary_email: 'ada@x.io' }) });
+    expect(valuesFor(ats, 'full_name')).toEqual(['Ada']); // JSON.parse would otherwise throw on the BOM
+  });
 });

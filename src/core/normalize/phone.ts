@@ -14,7 +14,8 @@ import { ISO_COUNTRY } from '../patterns.js';
 
 export function normalizePhone(input: unknown, defaultCountry?: string): string | null {
   if (typeof input !== 'string') return null;
-  const trimmed = input.trim();
+  // Drop a leading vCard/URI scheme ("tel:+91…") before parsing.
+  const trimmed = input.trim().replace(/^tel:/i, '').trim();
   if (trimmed.length === 0) return null;
 
   const hasIntlPrefix = trimmed.startsWith('+') || trimmed.startsWith('00');
