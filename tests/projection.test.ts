@@ -75,6 +75,19 @@ describe('project (the configurable output)', () => {
     expect(out.provenance.every((p) => p.field === 'emails[0]')).toBe(true);
   });
 
+  it('omits confidence for derived fields that have none (no misleading zero)', () => {
+    const config = parseConfig({
+      fields: [
+        { path: 'candidate_id', type: 'string' }, // derived — no tracked confidence
+        { path: 'full_name', type: 'string' }, // has confidence
+      ],
+      include_confidence: true,
+    });
+    const out = project(resolved, config) as { confidence: Record<string, unknown> };
+    expect(out.confidence).toHaveProperty('full_name');
+    expect(out.confidence).not.toHaveProperty('candidate_id');
+  });
+
   it('applies trim/lower/upper normalizers', () => {
     const config = parseConfig({ fields: [{ path: 'name_lc', from: 'full_name', type: 'string', normalize: 'lower' }] });
     expect(project(resolved, config)['name_lc']).toBe('ada lovelace');

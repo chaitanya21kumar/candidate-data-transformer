@@ -4,6 +4,7 @@
  * deterministic end to end.
  */
 import type { ExtractedField, ResolvedProfile } from '../types.js';
+import { cmp } from '../order.js';
 import { normalizeFields, type NormalizeOptions } from './normalizeFields.js';
 import { resolveEntities } from './resolve.js';
 import { buildProfile } from './build.js';
@@ -23,7 +24,7 @@ export function mergeToProfiles(
     return resolved;
   });
 
-  profiles.sort((a, b) => a.profile.candidate_id.localeCompare(b.profile.candidate_id));
+  profiles.sort((a, b) => cmp(a.profile.candidate_id, b.profile.candidate_id));
   return profiles;
 }
 

@@ -25,6 +25,7 @@ import { SOURCE_TRUST, noisyOr, overallConfidence, OVERALL_WEIGHTS, round4 } fro
 import { candidateId } from '../hash.js';
 import { githubUsername } from '../normalize/url.js';
 import { nameKey } from '../normalize/name.js';
+import { cmp } from '../order.js';
 import { foldCompany, sourceId } from './util.js';
 import type { NormalizedEducation, NormalizedExperience, NormalizedField } from './normalizeFields.js';
 
@@ -173,7 +174,7 @@ function groupValues(fields: readonly NormalizedField[], keyFn: KeyFn = defaultK
   for (const { values, perSource } of groups.values()) {
     const value = pickDisplay(values);
     const contributors = [...perSource.values()].sort(
-      (a, b) => a.sourceId.localeCompare(b.sourceId) || a.method.localeCompare(b.method),
+      (a, b) => cmp(a.sourceId, b.sourceId) || cmp(a.method, b.method),
     );
     // Corroboration combines confidence across distinct SOURCES (max per source first).
     const perSourceMax = new Map<string, number>();
@@ -194,7 +195,7 @@ function compareGroups(a: ValueGroup<unknown>, b: ValueGroup<unknown>): number {
   const bSources = new Set(b.contributors.map((c) => c.sourceId)).size;
   if (bSources !== aSources) return bSources - aSources;
   if (b.maxTrust !== a.maxTrust) return b.maxTrust - a.maxTrust;
-  return String(a.value).localeCompare(String(b.value));
+  return cmp(String(a.value), String(b.value));
 }
 
 /** Among casing variants, choose the display with the most upper-case letters (keeps
@@ -203,7 +204,7 @@ function pickDisplay(values: unknown[]): unknown {
   const strings = values.filter((v): v is string => typeof v === 'string');
   if (strings.length !== values.length || strings.length === 0) return values[0];
   const distinct = [...new Set(strings)];
-  distinct.sort((a, b) => upperCount(b) - upperCount(a) || a.localeCompare(b));
+  distinct.sort((a, b) => upperCount(b) - upperCount(a) || cmp(a, b));
   return distinct[0];
 }
 
@@ -319,7 +320,7 @@ function finalizeContribution(
   fieldConfidence[field] = noisyOr([...perSourceMax.values()]);
   const unique = new Map<string, Contributor>();
   for (const c of contributors) unique.set(`${c.sourceId}|${c.method}`, c);
-  for (const c of [...unique.values()].sort((a, b) => a.sourceId.localeCompare(b.sourceId) || a.method.localeCompare(b.method)))
+  for (const c of [...unique.values()].sort((a, b) => cmp(a.sourceId, b.sourceId) || cmp(a.method, b.method)))
     provenance.push({ field, source: c.sourceId, method: c.method });
 }
 
@@ -354,8 +355,8 @@ function compareExperience(a: CanonicalExperience, b: CanonicalExperience): numb
   if (aPresent !== bPresent) return bPresent - aPresent;
   const aStart = a.start ?? '0000-00';
   const bStart = b.start ?? '0000-00';
-  if (aStart !== bStart) return bStart.localeCompare(aStart);
-  return (a.company ?? '').localeCompare(b.company ?? '');
+  if (aStart !== bStart) return cmp(bStart, aStart);
+  return cmp(a.company ?? '', b.company ?? '');
 }
 
 // --- candidate id & overall confidence ------------------------------------------

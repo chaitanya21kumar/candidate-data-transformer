@@ -9,6 +9,7 @@
 import { readFile, readdir, stat } from 'node:fs/promises';
 import { join, extname, basename } from 'node:path';
 import type { RawSource, SourceType } from '../core/types.js';
+import { cmp } from '../core/order.js';
 import { extractPdfText } from './pdf.js';
 
 export interface LoadResult {
@@ -50,7 +51,7 @@ export async function loadSources(paths: readonly string[]): Promise<LoadResult>
   }
 
   // Deterministic ordering by name (entity resolution is order-independent anyway).
-  sources.sort((a, b) => a.name.localeCompare(b.name));
+  sources.sort((a, b) => cmp(a.name, b.name));
   return { sources, skipped };
 }
 

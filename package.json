@@ -8,9 +8,6 @@
   "engines": {
     "node": ">=18"
   },
-  "bin": {
-    "transform": "./src/cli.ts"
-  },
   "scripts": {
     "transform": "tsx src/cli.ts",
     "demo": "tsx src/cli.ts --inputs samples/ada",

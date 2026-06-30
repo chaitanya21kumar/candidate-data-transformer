@@ -61,10 +61,12 @@ export function project(resolved: ResolvedProfile, config: OutputConfig): Record
       .map((p) => confidenceKeyFor(fieldConfidence, p))
       .filter((k): k is string => k !== null);
 
-    if (config.include_confidence) {
+    // Attach confidence only when the value actually has a tracked confidence — derived
+    // fields like candidate_id have none, and a misleading 0 would be worse than omitting.
+    if (config.include_confidence && keys.length > 0) {
       confidence[field.path] = res.hadMap
         ? keys.map((k) => fieldConfidence[k] ?? 0)
-        : (keys[0] !== undefined ? (fieldConfidence[keys[0]] ?? 0) : 0);
+        : (fieldConfidence[keys[0]!] ?? 0);
     }
     if (config.include_provenance) for (const k of keys) provenanceKeys.add(k);
   }
