@@ -19,8 +19,8 @@
 > sure we are of it, deduplicated across sources, in normalized formats.
 
 <div align="center">
-  <img src="docs/assets/cli-demo.png" alt="The CLI merging five messy sources into one canonical profile, then projecting it through a runtime config" width="860" />
-  <br/><sub>The CLI: five messy sources → one canonical profile (default), then reshaped through a runtime config.</sub>
+  <img src="docs/assets/demo.gif" alt="Live demo: messy multi-source inputs transformed into one canonical profile, reshaped by a runtime config, with per-field confidence bars" width="900" />
+  <br/><sub><a href="https://candidate-data-transformer.netlify.app">▶ Live demo</a> — the same engine that powers the CLI, running in your browser: canonical profile, config-driven projection, and per-field confidence.</sub>
 </div>
 
 ---
@@ -301,6 +301,11 @@ The CLI prints clean JSON to stdout and a summary + diagnostics to stderr:
 transform --inputs <files|dirs...> [--config <file>] [--out <file>]
           [--default-country <ISO2>] [--compact] [--quiet]
 ```
+
+<div align="center">
+  <img src="docs/assets/cli-demo.png" alt="The CLI merging five messy sources into one canonical profile, then projecting it through a runtime config" width="820" />
+  <br/><sub>Real CLI output: five messy sources → one canonical profile (default), then reshaped through a runtime config.</sub>
+</div>
 
 > Requires Node 18+. No API keys needed — the GitHub source uses a captured fixture so runs
 > are deterministic and offline (the same adapter also reads a live `{user, repos}` payload).
