@@ -29,13 +29,29 @@ describe('entity resolution', () => {
     expect(profiles).toHaveLength(2);
   });
 
-  it('merges two records that share name AND company (weakest accepted key)', () => {
+  it('uses name+company only to attach an un-anchored record (a note)', () => {
     const sources: RawSource[] = [
       { type: 'csv', name: 'r.csv', content: 'Name,Email,Current Company,Title\nJohn Smith,john.a@x.io,Acme Corp,Engineer\n' },
       { type: 'notes', name: 'n.txt', content: 'Name: John Smith\nCurrently Engineer at Acme Corp.\nSkills: Go' },
     ];
-    const profiles = merge(sources);
-    expect(profiles).toHaveLength(1);
+    expect(merge(sources)).toHaveLength(1);
+  });
+
+  it('does NOT let name+company override differing strong identifiers', () => {
+    // Same name and company, but different emails -> two real people, kept apart.
+    const sources: RawSource[] = [
+      { type: 'csv', name: 'r.csv', content: 'Name,Email,Current Company,Title\nJohn Smith,john.a@x.io,Acme Corp,Engineer\nJohn Smith,john.b@y.io,Acme Corp,Engineer\n' },
+    ];
+    expect(merge(sources)).toHaveLength(2);
+  });
+
+  it('leaves a note unmerged when its name+company is ambiguous across people', () => {
+    const sources: RawSource[] = [
+      { type: 'csv', name: 'r.csv', content: 'Name,Email,Current Company,Title\nJohn Smith,john.a@x.io,Acme Corp,Engineer\nJohn Smith,john.b@y.io,Acme Corp,Engineer\n' },
+      { type: 'notes', name: 'n.txt', content: 'Name: John Smith\nCurrently Engineer at Acme Corp.\nSkills: Go' },
+    ];
+    // Two anchored people + one ambiguous note that cannot be attributed -> 3 clusters.
+    expect(merge(sources)).toHaveLength(3);
   });
 });
 
