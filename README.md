@@ -5,7 +5,7 @@
 **Messy candidate data from many sources → one clean, trustworthy profile — with provenance, calibrated confidence, and a config-driven output you can reshape without touching code.**
 
 [![CI](https://github.com/chaitanya21kumar/candidate-data-transformer/actions/workflows/ci.yml/badge.svg)](https://github.com/chaitanya21kumar/candidate-data-transformer/actions/workflows/ci.yml)
-![Tests](https://img.shields.io/badge/tests-67%20passing-brightgreen)
+![Tests](https://img.shields.io/badge/tests-77%20passing-brightgreen)
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178c6)
 ![Zod](https://img.shields.io/badge/validation-Zod-blue)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -348,7 +348,7 @@ candidates  records     time        throughput
 
 ## Tests & CI
 
-67 tests across normalizers, adapters, the merge engine, projection and the full pipeline —
+77 tests across normalizers, adapters, the merge engine, projection and the full pipeline —
 including a **gold-profile** test and a **determinism** test (two runs, deep-equal).
 
 ```bash
@@ -410,7 +410,7 @@ candidate-data-transformer/
 ├── samples/                  # constructed sample inputs (ada, edge)
 ├── outputs/                  # committed produced outputs
 ├── scripts/                  # build-outputs · benchmark · generate
-├── tests/                    # vitest suites (67 tests)
+├── tests/                    # vitest suites (77 tests)
 └── .github/workflows/ci.yml
 ```
 
