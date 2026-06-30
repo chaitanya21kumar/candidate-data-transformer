@@ -14,10 +14,12 @@
 
 export function normalizeName(input: unknown): string | null {
   if (typeof input !== 'string') return null;
-  let value = input.trim();
-  // Drop wrapping quotes and stray leading/trailing commas/semicolons.
-  value = value.replace(/^["'`]+|["'`]+$/g, '').replace(/^[,;\s]+|[,;\s]+$/g, '');
-  value = value.replace(/\s+/g, ' ').trim();
+  let value = input.trim().replace(/^["'`]+|["'`]+$/g, '').trim();
+  // Reorder the common "Last, First" export format into "First Last".
+  const lastFirst = value.match(/^([^,]+),\s*([^,]+)$/);
+  if (lastFirst && lastFirst[1] && lastFirst[2]) value = `${lastFirst[2].trim()} ${lastFirst[1].trim()}`;
+  // Drop stray leading/trailing commas/semicolons and collapse whitespace.
+  value = value.replace(/^[,;\s]+|[,;\s]+$/g, '').replace(/\s+/g, ' ').trim();
   if (value.length === 0) return null;
   // Must contain at least one letter and no obvious non-name tokens (emails, urls).
   if (!/\p{L}/u.test(value)) return null;
