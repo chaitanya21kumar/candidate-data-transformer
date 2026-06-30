@@ -18,6 +18,11 @@
 > get back **one canonical profile** — every field traceable to where it came from and how
 > sure we are of it, deduplicated across sources, in normalized formats.
 
+<div align="center">
+  <img src="docs/assets/cli-demo.png" alt="The CLI merging five messy sources into one canonical profile, then projecting it through a runtime config" width="860" />
+  <br/><sub>The CLI: five messy sources → one canonical profile (default), then reshaped through a runtime config.</sub>
+</div>
+
 ---
 
 ## TL;DR
@@ -227,6 +232,14 @@ contract is enforced, not merely hoped for.
 
 See three configs in [`configs/`](configs/): `recruiter-card.json`, `ats-sync.json`
 (provenance on, `on_missing: omit`, nested remap), and `contact-min.json`.
+
+The same engine runs in the [**live demo**](https://candidate-data-transformer.netlify.app) —
+paste sources, pick a config, and watch the canonical profile and the projected output
+update side by side:
+
+<div align="center">
+  <img src="docs/assets/ui-demo.png" alt="The live demo: canonical profile and config-driven projected output side by side, with diagnostics" width="900" />
+</div>
 
 ---
 

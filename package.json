@@ -13,9 +13,10 @@
   },
   "scripts": {
     "transform": "tsx src/cli.ts",
-    "demo": "tsx src/cli.ts transform --inputs samples/ada --config configs/default.json",
-    "demo:custom": "tsx src/cli.ts transform --inputs samples/ada --config configs/recruiter-card.json",
+    "demo": "tsx src/cli.ts --inputs samples/ada",
+    "demo:custom": "tsx src/cli.ts --inputs samples/ada --config configs/recruiter-card.json",
     "build:outputs": "tsx scripts/build-outputs.ts",
+    "build:engine": "esbuild src/core/index.ts --bundle --format=esm --platform=browser --outfile=web/engine.js",
     "bench": "tsx scripts/benchmark.ts",
     "generate": "tsx scripts/generate.ts",
     "typecheck": "tsc --noEmit",
@@ -39,6 +40,7 @@
   },
   "devDependencies": {
     "@types/node": "^22.5.0",
+    "esbuild": "^0.25.12",
     "tsx": "^4.19.0",
     "typescript": "^5.5.4",
     "vitest": "^3.2.4"

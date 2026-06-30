@@ -34,6 +34,10 @@ tmp/
 # Generated scale-benchmark fixtures (large, reproducible via scripts/generate.ts)
 samples/_generated/
 
-# UI build artifacts
+# UI build artifacts (engine.js is generated from src/core by `npm run build:engine`)
 web/dist/
 web/node_modules/
+web/engine.js
+
+# Local preview config
+.claude/

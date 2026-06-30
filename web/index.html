@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Candidate Data Transformer — live demo</title>
+  <meta name="description" content="Messy multi-source candidate data → one canonical profile with provenance & confidence." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>Multi-Source Candidate Data Transformer</h1>
+      <p class="tagline">Paste messy sources → one canonical profile with <b>provenance</b> &amp; <b>confidence</b>, then reshape it with a runtime config. The same pure engine that powers the CLI runs here in your browser.</p>
+      <a class="repo" href="https://github.com/chaitanya21kumar/candidate-data-transformer" target="_blank" rel="noopener">View source on GitHub ↗</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="inputs">
+      <div class="row">
+        <div class="field">
+          <label>Recruiter CSV <span class="badge struct">structured</span></label>
+          <textarea id="csv" spellcheck="false"></textarea>
+        </div>
+        <div class="field">
+          <label>ATS JSON <span class="badge struct">structured</span></label>
+          <textarea id="ats" spellcheck="false"></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label>GitHub API payload <span class="badge unstruct">unstructured</span></label>
+          <textarea id="github" spellcheck="false"></textarea>
+        </div>
+        <div class="field">
+          <label>Recruiter notes (free text) <span class="badge unstruct">unstructured</span></label>
+          <textarea id="notes" spellcheck="false"></textarea>
+        </div>
+      </div>
+
+      <div class="controls">
+        <label for="preset">Output config</label>
+        <select id="preset"></select>
+        <button id="run">Transform ▶</button>
+        <span id="status" class="status"></span>
+      </div>
+
+      <details class="config-wrap">
+        <summary>Edit the runtime config (the "configurable output" twist)</summary>
+        <textarea id="config" spellcheck="false" rows="12"></textarea>
+      </details>
+    </section>
+
+    <section class="results">
+      <div class="panel">
+        <h2>Canonical profile <span class="hint">default schema — the single source of truth</span></h2>
+        <div id="canonical" class="json"></div>
+      </div>
+      <div class="panel">
+        <h2>Projected output <span class="hint" id="proj-hint">reshaped &amp; validated against the config's schema</span></h2>
+        <div id="projected" class="json"></div>
+      </div>
+    </section>
+
+    <section id="diagnostics" class="diagnostics"></section>
+  </main>
+
+  <footer class="wrap">
+    Built by <a href="https://github.com/chaitanya21kumar" target="_blank" rel="noopener">Chaitanya Kumar</a> for the Eightfold Engineering Intern assignment ·
+    deterministic · robust · <a href="https://github.com/chaitanya21kumar/candidate-data-transformer#readme" target="_blank" rel="noopener">README</a>
+  </footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

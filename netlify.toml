@@ -1,0 +1,9 @@
+# Netlify deploy config for the live demo (static site).
+# The engine bundle is built from src/core so the deployed UI runs the exact same
+# pure engine as the CLI.
+[build]
+  command = "npm install && npm run build:engine"
+  publish = "web"
+
+[build.environment]
+  NODE_VERSION = "20"
