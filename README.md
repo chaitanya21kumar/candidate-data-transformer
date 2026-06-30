@@ -27,17 +27,28 @@
 
 ## TL;DR
 
-- **One trustworthy profile from many messy sources.** 5 source adapters → entity
+- 🎯 **One trustworthy profile from many messy sources.** 5 source adapters → entity
   resolution → conflict resolution → a single canonical record.
-- **Provenance + calibrated confidence on every value.** You can always answer *“where did
-  this come from, and how sure are we?”*
-- **Wrong-but-confident is worse than honestly-empty.** Unparseable phones, year-only
+- 🔎 **Provenance + calibrated confidence on every value.** You can always answer *“where
+  did this come from, and how sure are we?”*
+- 🛟 **Wrong-but-confident is worse than honestly-empty.** Unparseable phones, year-only
   dates and unknown countries become `null` (and are reported) — never guessed.
-- **Configurable output, zero code changes.** A runtime config reshapes the result
-  (subset, remap, normalize, toggles, missing-policy) and the result is **validated against
-  a schema built from that config**.
-- **Deterministic, robust, and fast.** Byte-identical runs, garbage never crashes it, and
+- 🎛️ **Configurable output, zero code changes.** A runtime config reshapes the result
+  (subset, remap, normalize, toggles, missing-policy), **validated against a schema built
+  from that config**.
+- ⚡ **Deterministic, robust, and fast.** Byte-identical runs, garbage never crashes it, and
   it sustains ~20k records/s.
+
+### At a glance
+
+| | |
+|---|---|
+| **Sources** | Recruiter CSV · ATS JSON · GitHub · recruiter notes · résumé (PDF/text) — 2 structured + 3 unstructured |
+| **Normalizes** | phones → E.164 · dates → `YYYY-MM` · country → ISO-3166 alpha-2 · skills → canonical |
+| **Resolves** | union-find on `email > phone > github > name+company` — never merges two different people |
+| **Reshapes** | runtime config: subset · remap · normalize · provenance/confidence toggles · `null \| omit \| error` |
+| **Guarantees** | deterministic · robust to garbage · schema-validated output · 83 tests · CI green |
+| **Try it** | **[▶ live demo](https://candidate-data-transformer.netlify.app)** · `npm run transform -- --inputs samples/ada` |
 
 > ▶ **Live demo:** https://candidate-data-transformer.netlify.app · **Demo video:** see [Demo](#demo)
 
