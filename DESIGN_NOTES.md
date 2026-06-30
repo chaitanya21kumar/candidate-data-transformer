@@ -170,8 +170,12 @@ nearest stored key (so `skills[0].name` finds the confidence stored at `skills[0
 ## 8. Determinism, robustness, scale
 
 - **Determinism:** no timestamps or randomness in any output; every collection is sorted by
-  a stable key; source/method priorities are fixed; `candidate_id` is an FNV-1a hash of the
-  strongest stable identifier (so the same person → the same id across runs and machines).
+  a stable key using a **code-unit comparator** (`src/core/order.ts`), never
+  `String.localeCompare` — whose order depends on the host's ICU locale and would otherwise
+  make output differ between machines (verified byte-identical under the C, German and English
+  locales). Source/method priorities are fixed; `candidate_id` is an FNV-1a hash of the
+  strongest stable identifier (so the same person → the same id across runs and machines), and
+  two indistinguishable name-only people fall back to a unique record id rather than colliding.
   CI regenerates `outputs/` and fails on any diff.
 - **Robustness:** every adapter is internally defensive *and* wrapped by the registry, so a
   malformed source yields `[]` and never throws. The I/O layer skips unreadable files with a
@@ -191,8 +195,10 @@ nearest stored key (so `skills[0].name` finds the confidence stored at `skills[0
   adapter consumes a live `{user, repos}` payload unchanged.
 - **No fuzzy/ML record linkage** — deterministic keys only (precision over recall; see §4).
 - **Resume parsing is best-effort** and PDF-text only (no OCR of scanned images). DOCX is not
-  extracted in this build (export to PDF/txt); PDF text extraction via `pdfjs-dist` is wired
-  and verified.
+  extracted in this build (export to PDF/txt); PDF text extraction via `pdfjs-dist` (with line
+  breaks reconstructed from EOL markers so sections parse) is tested end-to-end against a real
+  PDF fixture in `tests/io-pdf.test.ts`. The committed `samples/` outputs use extracted résumé
+  text so the default run stays deterministic and offline (no pdfjs in the determinism gate).
 - **Location parsing is heuristic** (city/region/country split on commas); no geocoding.
 - No official sample inputs were provided, so the fixtures under `samples/` are constructed
   to exercise every source type and edge case.

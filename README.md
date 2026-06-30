@@ -5,7 +5,7 @@
 **Messy candidate data from many sources → one clean, trustworthy profile — with provenance, calibrated confidence, and a config-driven output you can reshape without touching code.**
 
 [![CI](https://github.com/chaitanya21kumar/candidate-data-transformer/actions/workflows/ci.yml/badge.svg)](https://github.com/chaitanya21kumar/candidate-data-transformer/actions/workflows/ci.yml)
-![Tests](https://img.shields.io/badge/tests-77%20passing-brightgreen)
+![Tests](https://img.shields.io/badge/tests-83%20passing-brightgreen)
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178c6)
 ![Zod](https://img.shields.io/badge/validation-Zod-blue)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -39,7 +39,7 @@
 - **Deterministic, robust, and fast.** Byte-identical runs, garbage never crashes it, and
   it sustains ~20k records/s.
 
-> ▶ **Live demo:** https://candidate-data-transformer.netlify.app · **Demo video:** _(linked below)_
+> ▶ **Live demo:** https://candidate-data-transformer.netlify.app · **Demo video:** see [Demo](#demo)
 
 ---
 
@@ -50,6 +50,7 @@
 - [Merge & conflict resolution (worked example)](#merge--conflict-resolution-worked-example)
 - [The configurable output (the killer feature)](#the-configurable-output-the-killer-feature)
 - [Provenance & confidence](#provenance--confidence)
+- [Demo](#demo)
 - [Quickstart](#quickstart)
 - [Sample inputs & outputs](#sample-inputs--outputs)
 - [Edge cases handled](#edge-cases-handled)
@@ -262,6 +263,17 @@ free-text notes scores far lower — and you can see exactly why. Full model in
 
 ---
 
+## Demo
+
+- **▶ Live demo:** **[candidate-data-transformer.netlify.app](https://candidate-data-transformer.netlify.app)** —
+  paste sources, pick a config, and watch the canonical profile and projected output update side by side.
+- **📹 Walkthrough video (≈2 min):** <!-- VIDEO_LINK --> _coming with the submission_ — a screen recording running the
+  pipeline end-to-end on the sample inputs, showing the default output and a custom-config output, and talking through
+  one design decision (the canonical ⟂ projection split with config-driven validation) and one edge case (a phone
+  conflict resolved by preferring `null` over a wrong value).
+
+---
+
 ## Quickstart
 
 ```bash
@@ -348,8 +360,10 @@ candidates  records     time        throughput
 
 ## Tests & CI
 
-77 tests across normalizers, adapters, the merge engine, projection and the full pipeline —
-including a **gold-profile** test and a **determinism** test (two runs, deep-equal).
+83 tests across normalizers, adapters, the merge engine, projection and the full pipeline —
+including a **gold-profile** test, a **determinism** test (two runs, deep-equal), an
+**end-to-end PDF** extraction test against a real fixture, and a test asserting every
+**committed output is schema-valid**.
 
 ```bash
 npm test          # vitest
@@ -410,7 +424,7 @@ candidate-data-transformer/
 ├── samples/                  # constructed sample inputs (ada, edge)
 ├── outputs/                  # committed produced outputs
 ├── scripts/                  # build-outputs · benchmark · generate
-├── tests/                    # vitest suites (77 tests)
+├── tests/                    # vitest suites (83 tests)
 └── .github/workflows/ci.yml
 ```
 
