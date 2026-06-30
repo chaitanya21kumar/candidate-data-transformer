@@ -155,9 +155,11 @@ function run() {
       const projected = resolved.map((r) => project(r, config));
       $('projected').innerHTML = highlight(projected.length === 1 ? projected[0] : projected);
       $('proj-hint').textContent = `reshaped & validated against the config's schema (${config.fields.length} fields)`;
+      renderConfidence(projected[0]);
     } else {
       $('projected').innerHTML = `<span class="null">— no projection — the default schema is shown on the left —</span>`;
       $('proj-hint').textContent = 'pick a preset or write a config to reshape the output';
+      renderConfidence(null);
     }
 
     const notes = [...new Set(resolved.flatMap((r) => r.notes))];
@@ -172,7 +174,36 @@ function run() {
     $('projected').innerHTML = `<span class="err">${escapeHtml(String(err && err.message ? err.message : err))}</span>`;
     status.textContent = '✗ ' + (err && err.message ? err.message : 'error');
     status.className = 'status err';
+    renderConfidence(null);
   }
+}
+
+// --- confidence bar visualization ---
+function renderConfidence(record) {
+  const panel = $('confidence-panel');
+  const bars = $('confidence-bars');
+  const conf = record && typeof record.confidence === 'object' && record.confidence !== null ? record.confidence : null;
+  if (!conf) {
+    panel.hidden = true;
+    bars.innerHTML = '';
+    return;
+  }
+  const rows = [];
+  const add = (label, value, isOverall) => {
+    const pct = Math.max(0, Math.min(100, Math.round(value * 100)));
+    rows.push(
+      `<div class="label ${isOverall ? 'overall' : ''}">${escapeHtml(label)}</div>` +
+        `<div class="track"><div class="fill ${isOverall ? 'overall' : ''}" style="width:${pct}%"></div></div>` +
+        `<div class="val">${value.toFixed(3)}</div>`,
+    );
+  };
+  for (const [k, v] of Object.entries(conf)) {
+    if (typeof v === 'number') add(k, v, false);
+    else if (Array.isArray(v) && v.length) add(`${k} (avg of ${v.length})`, v.reduce((a, b) => a + b, 0) / v.length, false);
+  }
+  if (typeof record.overall_confidence === 'number') add('overall_confidence', record.overall_confidence, true);
+  bars.innerHTML = rows.join('');
+  panel.hidden = false;
 }
 
 // --- tiny JSON syntax highlighter ---

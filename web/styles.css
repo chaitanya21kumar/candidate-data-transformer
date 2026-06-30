@@ -76,6 +76,17 @@ button#run:hover { background: var(--accent); }
 .json .null { color: #8b949e; }
 .json .err { color: #ff7b72; }
 
+.conf-panel { margin-top: 16px; background: var(--panel); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+.conf-panel h2 { margin: 0; font-size: 14px; padding: 11px 14px; background: var(--panel-2); border-bottom: 1px solid var(--border); }
+.conf-panel h2 .hint { display: block; font-size: 11px; font-weight: 400; color: var(--muted); margin-top: 2px; }
+.conf-bars { padding: 12px 14px; display: grid; grid-template-columns: 160px 1fr 52px; gap: 6px 12px; align-items: center; }
+.conf-bars .label { font-family: var(--mono); font-size: 12px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.conf-bars .label.overall { font-weight: 700; color: #fff; }
+.conf-bars .track { height: 9px; background: var(--panel-2); border-radius: 5px; overflow: hidden; }
+.conf-bars .fill { height: 100%; border-radius: 5px; background: linear-gradient(90deg, var(--accent-2), var(--accent)); }
+.conf-bars .fill.overall { background: linear-gradient(90deg, #2f8f46, var(--green)); }
+.conf-bars .val { font-family: var(--mono); font-size: 11.5px; color: var(--muted); text-align: right; }
+
 .diagnostics { margin-top: 16px; font-family: var(--mono); font-size: 12px; color: var(--amber); }
 .diagnostics .d { padding: 2px 0; }
 
