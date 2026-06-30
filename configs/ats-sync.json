@@ -1,0 +1,14 @@
+{
+  "fields": [
+    { "path": "candidate_id", "type": "string", "required": true },
+    { "path": "name", "from": "full_name", "type": "string", "required": true },
+    { "path": "emails", "type": "string[]" },
+    { "path": "github", "from": "links.github", "type": "string" },
+    { "path": "country", "from": "location.country", "type": "string" },
+    { "path": "current_role", "from": "experience[0].title", "type": "string" },
+    { "path": "current_company", "from": "experience[0].company", "type": "string" }
+  ],
+  "include_confidence": false,
+  "include_provenance": true,
+  "on_missing": "omit"
+}

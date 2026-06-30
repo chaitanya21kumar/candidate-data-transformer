@@ -75,6 +75,18 @@ describe('confidence model', () => {
     expect(manyConf).toBeLessThanOrEqual(1);
   });
 
+  it('de-duplicates non-canonical skills case-insensitively, keeping the best casing', () => {
+    const sources: RawSource[] = [
+      { type: 'csv', name: 'r.csv', content: 'Name,Email,Skills\nAda,ada@x.io,"Distributed Systems; COBOL"\n' },
+      { type: 'notes', name: 'n.txt', content: 'Email: ada@x.io\nSkills: distributed systems, cobol' },
+    ];
+    const names = merge(sources)[0]!.profile.skills.map((s) => s.name);
+    expect(names).toContain('Distributed Systems');
+    expect(names).toContain('COBOL');
+    expect(names.filter((n) => n.toLowerCase() === 'distributed systems')).toHaveLength(1);
+    expect(names.filter((n) => n.toLowerCase() === 'cobol')).toHaveLength(1);
+  });
+
   it('orders multi-valued emails so [0] is the most trustworthy', () => {
     const sources: RawSource[] = [
       // Same person (linked by phone); a high-trust email and a low-trust one.

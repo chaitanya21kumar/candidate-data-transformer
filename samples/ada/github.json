@@ -1,0 +1,18 @@
+{
+  "user": {
+    "login": "adalovelace",
+    "name": "Ada Lovelace",
+    "bio": "Principal engineer. Distributed systems & numerical computing.",
+    "company": "@AnalyticalEngines",
+    "blog": "https://ada.dev",
+    "location": "London, UK",
+    "html_url": "https://github.com/adalovelace",
+    "twitter_username": "ada_codes"
+  },
+  "repos": [
+    { "name": "analytical-engine", "languages": { "C++": 90000, "Python": 24000 }, "fork": false },
+    { "name": "weaving", "language": "TypeScript", "fork": false },
+    { "name": "notes-on-the-engine", "language": "Python", "fork": false },
+    { "name": "someone-elses-thing", "language": "Go", "fork": true }
+  ]
+}

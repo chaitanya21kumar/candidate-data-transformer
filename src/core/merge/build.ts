@@ -93,7 +93,7 @@ export function buildProfile(cluster: readonly NormalizedField[]): ResolvedProfi
   const otherGroups = pickMulti(get('links.other')).filter((g) => !specificLinks.has(g.value as string));
   otherGroups.forEach((g, i) => addProvenance(`links.other[${i}]`, g));
 
-  const skillGroups = pickMulti(get('skill'));
+  const skillGroups = pickMulti(get('skill'), caseInsensitiveKey);
   const skills = skillGroups.map((g, i) => {
     addProvenance(`skills[${i}]`, g);
     return {
@@ -148,12 +148,19 @@ export function buildProfile(cluster: readonly NormalizedField[]): ResolvedProfi
 
 // --- grouping & selection -------------------------------------------------------
 
-function groupValues(fields: readonly NormalizedField[]): ValueGroup<unknown>[] {
-  const groups = new Map<string, { value: unknown; perSource: Map<string, Contributor> }>();
+type KeyFn = (value: unknown) => string;
+
+const defaultKey: KeyFn = (value) => (typeof value === 'string' ? value : JSON.stringify(value));
+/** Case-insensitive key so skill casing variants ("distributed systems") collapse. */
+const caseInsensitiveKey: KeyFn = (value) => (typeof value === 'string' ? value.toLowerCase() : JSON.stringify(value));
+
+function groupValues(fields: readonly NormalizedField[], keyFn: KeyFn = defaultKey): ValueGroup<unknown>[] {
+  const groups = new Map<string, { values: unknown[]; perSource: Map<string, Contributor> }>();
   for (const f of fields) {
-    const key = typeof f.value === 'string' ? f.value : JSON.stringify(f.value);
-    if (!groups.has(key)) groups.set(key, { value: f.value, perSource: new Map() });
+    const key = keyFn(f.value);
+    if (!groups.has(key)) groups.set(key, { values: [], perSource: new Map() });
     const g = groups.get(key)!;
+    g.values.push(f.value);
     const sid = sourceId(f.source);
     const ckey = `${sid}|${f.method}`;
     const existing = g.perSource.get(ckey);
@@ -163,7 +170,8 @@ function groupValues(fields: readonly NormalizedField[]): ValueGroup<unknown>[] 
   }
 
   const out: ValueGroup<unknown>[] = [];
-  for (const { value, perSource } of groups.values()) {
+  for (const { values, perSource } of groups.values()) {
+    const value = pickDisplay(values);
     const contributors = [...perSource.values()].sort(
       (a, b) => a.sourceId.localeCompare(b.sourceId) || a.method.localeCompare(b.method),
     );
@@ -189,13 +197,29 @@ function compareGroups(a: ValueGroup<unknown>, b: ValueGroup<unknown>): number {
   return String(a.value).localeCompare(String(b.value));
 }
 
-function pickSingle(fields: readonly NormalizedField[]): ValueGroup<unknown> | null {
-  if (fields.length === 0) return null;
-  return groupValues(fields)[0] ?? null;
+/** Among casing variants, choose the display with the most upper-case letters (keeps
+ *  acronyms like "COBOL"/"SQL"); deterministic lexicographic tie-break. */
+function pickDisplay(values: unknown[]): unknown {
+  const strings = values.filter((v): v is string => typeof v === 'string');
+  if (strings.length !== values.length || strings.length === 0) return values[0];
+  const distinct = [...new Set(strings)];
+  distinct.sort((a, b) => upperCount(b) - upperCount(a) || a.localeCompare(b));
+  return distinct[0];
 }
 
-function pickMulti(fields: readonly NormalizedField[]): ValueGroup<unknown>[] {
-  return groupValues(fields);
+function upperCount(value: string): number {
+  let n = 0;
+  for (const ch of value) if (ch >= 'A' && ch <= 'Z') n++;
+  return n;
+}
+
+function pickSingle(fields: readonly NormalizedField[], keyFn?: KeyFn): ValueGroup<unknown> | null {
+  if (fields.length === 0) return null;
+  return groupValues(fields, keyFn)[0] ?? null;
+}
+
+function pickMulti(fields: readonly NormalizedField[], keyFn?: KeyFn): ValueGroup<unknown>[] {
+  return groupValues(fields, keyFn);
 }
 
 // --- experience & education -----------------------------------------------------

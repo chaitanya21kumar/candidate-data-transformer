@@ -1,0 +1,445 @@
+[
+  {
+    "candidate_id": "cand_83ee09b85ff7d2fd",
+    "full_name": "Ada Lovelace",
+    "emails": [
+      "ada@analyticalengine.io",
+      "ada.lovelace@gmail.com"
+    ],
+    "phones": [
+      "+442079460958"
+    ],
+    "location": {
+      "city": "London",
+      "region": null,
+      "country": "GB"
+    },
+    "links": {
+      "linkedin": "https://linkedin.com/in/adalovelace",
+      "github": "https://github.com/adalovelace",
+      "portfolio": "https://ada.dev",
+      "other": [
+        "https://twitter.com/ada_codes"
+      ]
+    },
+    "headline": "Principal Software Engineer",
+    "years_experience": 12,
+    "skills": [
+      {
+        "name": "JavaScript",
+        "confidence": 0.9957,
+        "sources": [
+          "ats_json:greenhouse.ats.json",
+          "csv:recruiter.csv",
+          "resume:resume.txt"
+        ]
+      },
+      {
+        "name": "Kubernetes",
+        "confidence": 0.9957,
+        "sources": [
+          "ats_json:greenhouse.ats.json",
+          "csv:recruiter.csv",
+          "resume:resume.txt"
+        ]
+      },
+      {
+        "name": "PostgreSQL",
+        "confidence": 0.9957,
+        "sources": [
+          "ats_json:greenhouse.ats.json",
+          "csv:recruiter.csv",
+          "resume:resume.txt"
+        ]
+      },
+      {
+        "name": "TypeScript",
+        "confidence": 0.9924,
+        "sources": [
+          "ats_json:greenhouse.ats.json",
+          "github:github.json",
+          "resume:resume.txt"
+        ]
+      },
+      {
+        "name": "Distributed Systems",
+        "confidence": 0.9771,
+        "sources": [
+          "ats_json:greenhouse.ats.json",
+          "csv:recruiter.csv",
+          "notes:notes.txt"
+        ]
+      },
+      {
+        "name": "Python",
+        "confidence": 0.9661,
+        "sources": [
+          "github:github.json",
+          "notes:notes.txt",
+          "resume:resume.txt"
+        ]
+      },
+      {
+        "name": "C++",
+        "confidence": 0.9364,
+        "sources": [
+          "github:github.json",
+          "resume:resume.txt"
+        ]
+      },
+      {
+        "name": "Docker",
+        "confidence": 0.6375,
+        "sources": [
+          "resume:resume.txt"
+        ]
+      },
+      {
+        "name": "SQL",
+        "confidence": 0.6375,
+        "sources": [
+          "resume:resume.txt"
+        ]
+      },
+      {
+        "name": "mentoring",
+        "confidence": 0.4208,
+        "sources": [
+          "notes:notes.txt"
+        ]
+      }
+    ],
+    "experience": [
+      {
+        "company": "Analytical Engines Ltd",
+        "title": "Principal Engineer",
+        "start": "2019-03",
+        "end": "present",
+        "summary": "Leads the distributed compute team."
+      },
+      {
+        "company": "Babbage Systems",
+        "title": "Senior Engineer",
+        "start": "2014-03",
+        "end": "2019-02",
+        "summary": null
+      }
+    ],
+    "education": [
+      {
+        "institution": "University of London",
+        "degree": "BSc",
+        "field": "Mathematics",
+        "end_year": 2010
+      }
+    ],
+    "provenance": [
+      {
+        "field": "full_name",
+        "source": "ats_json:greenhouse.ats.json",
+        "method": "structured_field"
+      },
+      {
+        "field": "full_name",
+        "source": "csv:recruiter.csv",
+        "method": "structured_field"
+      },
+      {
+        "field": "full_name",
+        "source": "github:github.json",
+        "method": "api_field"
+      },
+      {
+        "field": "full_name",
+        "source": "resume:resume.txt",
+        "method": "heuristic"
+      },
+      {
+        "field": "headline",
+        "source": "ats_json:greenhouse.ats.json",
+        "method": "structured_field"
+      },
+      {
+        "field": "years_experience",
+        "source": "csv:recruiter.csv",
+        "method": "structured_field"
+      },
+      {
+        "field": "years_experience",
+        "source": "notes:notes.txt",
+        "method": "regex_extraction"
+      },
+      {
+        "field": "location.city",
+        "source": "ats_json:greenhouse.ats.json",
+        "method": "structured_field"
+      },
+      {
+        "field": "location.city",
+        "source": "csv:recruiter.csv",
+        "method": "structured_field"
+      },
+      {
+        "field": "location.city",
+        "source": "github:github.json",
+        "method": "api_field"
+      },
+      {
+        "field": "location.country",
+        "source": "ats_json:greenhouse.ats.json",
+        "method": "structured_field"
+      },
+      {
+        "field": "location.country",
+        "source": "csv:recruiter.csv",
+        "method": "structured_field"
+      },
+      {
+        "field": "location.country",
+        "source": "github:github.json",
+        "method": "api_field"
+      },
+      {
+        "field": "links.linkedin",
+        "source": "ats_json:greenhouse.ats.json",
+        "method": "structured_field"
+      },
+      {
+        "field": "links.linkedin",
+        "source": "csv:recruiter.csv",
+        "method": "structured_field"
+      },
+      {
+        "field": "links.github",
+        "source": "ats_json:greenhouse.ats.json",
+        "method": "structured_field"
+      },
+      {
+        "field": "links.github",
+        "source": "github:github.json",
+        "method": "api_field"
+      },
+      {
+        "field": "links.github",
+        "source": "resume:resume.txt",
+        "method": "regex_extraction"
+      },
+      {
+        "field": "links.portfolio",
+        "source": "github:github.json",
+        "method": "api_field"
+      },
+      {
+        "field": "links.portfolio",
+        "source": "notes:notes.txt",
+        "method": "labeled_field"
+      },
+      {
+        "field": "emails[0]",
+        "source": "ats_json:greenhouse.ats.json",
+        "method": "structured_field"
+      },
+      {
+        "field": "emails[0]",
+        "source": "csv:recruiter.csv",
+        "method": "structured_field"
+      },
+      {
+        "field": "emails[0]",
+        "source": "resume:resume.txt",
+        "method": "regex_extraction"
+      },
+      {
+        "field": "emails[1]",
+        "source": "ats_json:greenhouse.ats.json",
+        "method": "structured_field"
+      },
+      {
+        "field": "emails[1]",
+        "source": "notes:notes.txt",
+        "method": "labeled_field"
+      },
+      {
+        "field": "phones[0]",
+        "source": "ats_json:greenhouse.ats.json",
+        "method": "structured_field"
+      },
+      {
+        "field": "phones[0]",
+        "source": "notes:notes.txt",
+        "method": "labeled_field"
+      },
+      {
+        "field": "phones[0]",
+        "source": "resume:resume.txt",
+        "method": "regex_extraction"
+      },
+      {
+        "field": "links.other[0]",
+        "source": "github:github.json",
+        "method": "api_field"
+      },
+      {
+        "field": "skills[0]",
+        "source": "ats_json:greenhouse.ats.json",
+        "method": "structured_field"
+      },
+      {
+        "field": "skills[0]",
+        "source": "csv:recruiter.csv",
+        "method": "structured_field"
+      },
+      {
+        "field": "skills[0]",
+        "source": "resume:resume.txt",
+        "method": "labeled_field"
+      },
+      {
+        "field": "skills[1]",
+        "source": "ats_json:greenhouse.ats.json",
+        "method": "structured_field"
+      },
+      {
+        "field": "skills[1]",
+        "source": "csv:recruiter.csv",
+        "method": "structured_field"
+      },
+      {
+        "field": "skills[1]",
+        "source": "resume:resume.txt",
+        "method": "labeled_field"
+      },
+      {
+        "field": "skills[2]",
+        "source": "ats_json:greenhouse.ats.json",
+        "method": "structured_field"
+      },
+      {
+        "field": "skills[2]",
+        "source": "csv:recruiter.csv",
+        "method": "structured_field"
+      },
+      {
+        "field": "skills[2]",
+        "source": "resume:resume.txt",
+        "method": "labeled_field"
+      },
+      {
+        "field": "skills[3]",
+        "source": "ats_json:greenhouse.ats.json",
+        "method": "structured_field"
+      },
+      {
+        "field": "skills[3]",
+        "source": "github:github.json",
+        "method": "api_field"
+      },
+      {
+        "field": "skills[3]",
+        "source": "resume:resume.txt",
+        "method": "labeled_field"
+      },
+      {
+        "field": "skills[4]",
+        "source": "ats_json:greenhouse.ats.json",
+        "method": "structured_field"
+      },
+      {
+        "field": "skills[4]",
+        "source": "csv:recruiter.csv",
+        "method": "structured_field"
+      },
+      {
+        "field": "skills[4]",
+        "source": "notes:notes.txt",
+        "method": "labeled_field"
+      },
+      {
+        "field": "skills[5]",
+        "source": "github:github.json",
+        "method": "api_field"
+      },
+      {
+        "field": "skills[5]",
+        "source": "notes:notes.txt",
+        "method": "labeled_field"
+      },
+      {
+        "field": "skills[5]",
+        "source": "resume:resume.txt",
+        "method": "labeled_field"
+      },
+      {
+        "field": "skills[6]",
+        "source": "github:github.json",
+        "method": "api_field"
+      },
+      {
+        "field": "skills[6]",
+        "source": "resume:resume.txt",
+        "method": "labeled_field"
+      },
+      {
+        "field": "skills[7]",
+        "source": "resume:resume.txt",
+        "method": "labeled_field"
+      },
+      {
+        "field": "skills[8]",
+        "source": "resume:resume.txt",
+        "method": "labeled_field"
+      },
+      {
+        "field": "skills[9]",
+        "source": "notes:notes.txt",
+        "method": "labeled_field"
+      },
+      {
+        "field": "experience[0]",
+        "source": "ats_json:greenhouse.ats.json",
+        "method": "structured_field"
+      },
+      {
+        "field": "experience[0]",
+        "source": "csv:recruiter.csv",
+        "method": "structured_field"
+      },
+      {
+        "field": "experience[0]",
+        "source": "github:github.json",
+        "method": "api_field"
+      },
+      {
+        "field": "experience[0]",
+        "source": "notes:notes.txt",
+        "method": "heuristic"
+      },
+      {
+        "field": "experience[0]",
+        "source": "resume:resume.txt",
+        "method": "regex_extraction"
+      },
+      {
+        "field": "experience[1]",
+        "source": "ats_json:greenhouse.ats.json",
+        "method": "structured_field"
+      },
+      {
+        "field": "experience[1]",
+        "source": "resume:resume.txt",
+        "method": "regex_extraction"
+      },
+      {
+        "field": "education[0]",
+        "source": "ats_json:greenhouse.ats.json",
+        "method": "structured_field"
+      },
+      {
+        "field": "education[0]",
+        "source": "resume:resume.txt",
+        "method": "regex_extraction"
+      }
+    ],
+    "overall_confidence": 0.9649
+  }
+]

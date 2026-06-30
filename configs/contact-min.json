@@ -1,0 +1,8 @@
+{
+  "fields": [
+    { "path": "name", "from": "full_name", "type": "string", "required": true },
+    { "path": "email", "from": "emails[0]", "type": "string" },
+    { "path": "phone", "from": "phones[0]", "type": "string" }
+  ],
+  "on_missing": "null"
+}

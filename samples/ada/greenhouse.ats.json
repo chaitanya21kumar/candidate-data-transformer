@@ -1,0 +1,26 @@
+{
+  "source": "greenhouse",
+  "exported_at": "from an ATS — note the field names below do NOT match our schema",
+  "applicant": {
+    "first_name": "Ada",
+    "last_name": "Lovelace",
+    "primary_email": "ada@analyticalengine.io",
+    "alternate_emails": ["ada.lovelace@gmail.com"],
+    "mobile": "0044 20 7946 0958",
+    "current_title": "Principal Software Engineer",
+    "current_employer": "Analytical Engines",
+    "location": { "city": "London", "country": "UK" },
+    "tags": ["JavaScript", "TypeScript", "PostgreSQL", "Kubernetes", "Distributed Systems"],
+    "social_links": {
+      "github": "https://github.com/adalovelace",
+      "linkedin": "https://www.linkedin.com/in/adalovelace"
+    },
+    "work_history": [
+      { "org": "Analytical Engines Ltd", "role": "Principal Engineer", "from": "2019-03", "to": "present", "notes": "Leads the distributed compute team." },
+      { "org": "Babbage Systems", "role": "Senior Engineer", "from": "March 2014", "to": "Feb 2019" }
+    ],
+    "schools": [
+      { "name": "University of London", "qualification": "BSc", "major": "Mathematics", "graduated": 2010 }
+    ]
+  }
+}

@@ -1,0 +1,91 @@
+[
+  {
+    "candidate_id": "cand_83ee09b85ff7d2fd",
+    "name": "Ada Lovelace",
+    "emails": [
+      "ada@analyticalengine.io",
+      "ada.lovelace@gmail.com"
+    ],
+    "github": "https://github.com/adalovelace",
+    "country": "GB",
+    "current_role": "Principal Engineer",
+    "current_company": "Analytical Engines Ltd",
+    "provenance": [
+      {
+        "field": "full_name",
+        "source": "ats_json:greenhouse.ats.json",
+        "method": "structured_field"
+      },
+      {
+        "field": "full_name",
+        "source": "csv:recruiter.csv",
+        "method": "structured_field"
+      },
+      {
+        "field": "full_name",
+        "source": "github:github.json",
+        "method": "api_field"
+      },
+      {
+        "field": "full_name",
+        "source": "resume:resume.txt",
+        "method": "heuristic"
+      },
+      {
+        "field": "location.country",
+        "source": "ats_json:greenhouse.ats.json",
+        "method": "structured_field"
+      },
+      {
+        "field": "location.country",
+        "source": "csv:recruiter.csv",
+        "method": "structured_field"
+      },
+      {
+        "field": "location.country",
+        "source": "github:github.json",
+        "method": "api_field"
+      },
+      {
+        "field": "links.github",
+        "source": "ats_json:greenhouse.ats.json",
+        "method": "structured_field"
+      },
+      {
+        "field": "links.github",
+        "source": "github:github.json",
+        "method": "api_field"
+      },
+      {
+        "field": "links.github",
+        "source": "resume:resume.txt",
+        "method": "regex_extraction"
+      },
+      {
+        "field": "experience[0]",
+        "source": "ats_json:greenhouse.ats.json",
+        "method": "structured_field"
+      },
+      {
+        "field": "experience[0]",
+        "source": "csv:recruiter.csv",
+        "method": "structured_field"
+      },
+      {
+        "field": "experience[0]",
+        "source": "github:github.json",
+        "method": "api_field"
+      },
+      {
+        "field": "experience[0]",
+        "source": "notes:notes.txt",
+        "method": "heuristic"
+      },
+      {
+        "field": "experience[0]",
+        "source": "resume:resume.txt",
+        "method": "regex_extraction"
+      }
+    ]
+  }
+]

@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Grace Hopper",
+    "primary_email": "grace@navy.mil",
+    "current_title": "Computer Scientist",
+    "tags": ["Compilers", "Mathematics", "COBOL"],
+    "location": { "city": "Arlington", "country": "United States" }
+  },
+  {
+    "first_name": "Linus",
+    "last_name": "Torvalds",
+    "primary_email": "linus@kernel.org",
+    "tags": ["C", "Linux", "Git"],
+    "github_url": "https://github.com/torvalds"
+  }
+]

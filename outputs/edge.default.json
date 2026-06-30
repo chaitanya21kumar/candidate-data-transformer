@@ -1,0 +1,369 @@
+[
+  {
+    "candidate_id": "cand_332329d0fe537b99",
+    "full_name": "Linus Torvalds",
+    "emails": [
+      "linus@kernel.org"
+    ],
+    "phones": [],
+    "location": {
+      "city": null,
+      "region": null,
+      "country": null
+    },
+    "links": {
+      "linkedin": null,
+      "github": "https://github.com/torvalds",
+      "portfolio": null,
+      "other": []
+    },
+    "headline": null,
+    "years_experience": null,
+    "skills": [
+      {
+        "name": "C",
+        "confidence": 0.88,
+        "sources": [
+          "ats_json:talent.ats.json"
+        ]
+      },
+      {
+        "name": "Git",
+        "confidence": 0.88,
+        "sources": [
+          "ats_json:talent.ats.json"
+        ]
+      },
+      {
+        "name": "Linux",
+        "confidence": 0.88,
+        "sources": [
+          "ats_json:talent.ats.json"
+        ]
+      }
+    ],
+    "experience": [],
+    "education": [],
+    "provenance": [
+      {
+        "field": "full_name",
+        "source": "ats_json:talent.ats.json",
+        "method": "structured_field"
+      },
+      {
+        "field": "links.github",
+        "source": "ats_json:talent.ats.json",
+        "method": "structured_field"
+      },
+      {
+        "field": "emails[0]",
+        "source": "ats_json:talent.ats.json",
+        "method": "structured_field"
+      },
+      {
+        "field": "skills[0]",
+        "source": "ats_json:talent.ats.json",
+        "method": "structured_field"
+      },
+      {
+        "field": "skills[1]",
+        "source": "ats_json:talent.ats.json",
+        "method": "structured_field"
+      },
+      {
+        "field": "skills[2]",
+        "source": "ats_json:talent.ats.json",
+        "method": "structured_field"
+      }
+    ],
+    "overall_confidence": 0.88
+  },
+  {
+    "candidate_id": "cand_a1515795c262e0d3",
+    "full_name": "Jordan Lee",
+    "emails": [
+      "jordan.lee@acme.io"
+    ],
+    "phones": [
+      "+14155550150"
+    ],
+    "location": {
+      "city": null,
+      "region": null,
+      "country": null
+    },
+    "links": {
+      "linkedin": null,
+      "github": null,
+      "portfolio": null,
+      "other": []
+    },
+    "headline": null,
+    "years_experience": null,
+    "skills": [
+      {
+        "name": "Go",
+        "confidence": 0.9,
+        "sources": [
+          "csv:recruiters.csv"
+        ]
+      },
+      {
+        "name": "Kubernetes",
+        "confidence": 0.9,
+        "sources": [
+          "csv:recruiters.csv"
+        ]
+      }
+    ],
+    "experience": [
+      {
+        "company": "Acme",
+        "title": "Backend Engineer",
+        "start": null,
+        "end": "present",
+        "summary": null
+      }
+    ],
+    "education": [],
+    "provenance": [
+      {
+        "field": "full_name",
+        "source": "csv:recruiters.csv",
+        "method": "structured_field"
+      },
+      {
+        "field": "emails[0]",
+        "source": "csv:recruiters.csv",
+        "method": "structured_field"
+      },
+      {
+        "field": "phones[0]",
+        "source": "csv:recruiters.csv",
+        "method": "structured_field"
+      },
+      {
+        "field": "skills[0]",
+        "source": "csv:recruiters.csv",
+        "method": "structured_field"
+      },
+      {
+        "field": "skills[1]",
+        "source": "csv:recruiters.csv",
+        "method": "structured_field"
+      },
+      {
+        "field": "experience[0]",
+        "source": "csv:recruiters.csv",
+        "method": "structured_field"
+      }
+    ],
+    "overall_confidence": 0.9
+  },
+  {
+    "candidate_id": "cand_bbd200cd4fff5469",
+    "full_name": "Grace Hopper",
+    "emails": [
+      "grace@navy.mil"
+    ],
+    "phones": [
+      "+12025550178"
+    ],
+    "location": {
+      "city": "Arlington",
+      "region": null,
+      "country": "US"
+    },
+    "links": {
+      "linkedin": null,
+      "github": null,
+      "portfolio": null,
+      "other": []
+    },
+    "headline": "Computer Scientist",
+    "years_experience": null,
+    "skills": [
+      {
+        "name": "COBOL",
+        "confidence": 0.9605,
+        "sources": [
+          "ats_json:talent.ats.json",
+          "csv:recruiters.csv"
+        ]
+      },
+      {
+        "name": "Compilers",
+        "confidence": 0.9605,
+        "sources": [
+          "ats_json:talent.ats.json",
+          "csv:recruiters.csv"
+        ]
+      },
+      {
+        "name": "Mathematics",
+        "confidence": 0.792,
+        "sources": [
+          "ats_json:talent.ats.json"
+        ]
+      }
+    ],
+    "experience": [
+      {
+        "company": "US Navy",
+        "title": "Rear Admiral",
+        "start": null,
+        "end": "present",
+        "summary": null
+      }
+    ],
+    "education": [],
+    "provenance": [
+      {
+        "field": "full_name",
+        "source": "ats_json:talent.ats.json",
+        "method": "structured_field"
+      },
+      {
+        "field": "full_name",
+        "source": "csv:recruiters.csv",
+        "method": "structured_field"
+      },
+      {
+        "field": "headline",
+        "source": "ats_json:talent.ats.json",
+        "method": "structured_field"
+      },
+      {
+        "field": "location.city",
+        "source": "ats_json:talent.ats.json",
+        "method": "structured_field"
+      },
+      {
+        "field": "location.country",
+        "source": "ats_json:talent.ats.json",
+        "method": "structured_field"
+      },
+      {
+        "field": "emails[0]",
+        "source": "ats_json:talent.ats.json",
+        "method": "structured_field"
+      },
+      {
+        "field": "emails[0]",
+        "source": "csv:recruiters.csv",
+        "method": "structured_field"
+      },
+      {
+        "field": "phones[0]",
+        "source": "csv:recruiters.csv",
+        "method": "structured_field"
+      },
+      {
+        "field": "skills[0]",
+        "source": "ats_json:talent.ats.json",
+        "method": "structured_field"
+      },
+      {
+        "field": "skills[0]",
+        "source": "csv:recruiters.csv",
+        "method": "structured_field"
+      },
+      {
+        "field": "skills[1]",
+        "source": "ats_json:talent.ats.json",
+        "method": "structured_field"
+      },
+      {
+        "field": "skills[1]",
+        "source": "csv:recruiters.csv",
+        "method": "structured_field"
+      },
+      {
+        "field": "skills[2]",
+        "source": "ats_json:talent.ats.json",
+        "method": "structured_field"
+      },
+      {
+        "field": "experience[0]",
+        "source": "csv:recruiters.csv",
+        "method": "structured_field"
+      }
+    ],
+    "overall_confidence": 0.9355
+  },
+  {
+    "candidate_id": "cand_c531ff0fc61d09f6",
+    "full_name": "Jordan Lee",
+    "emails": [
+      "jlee@globex.io"
+    ],
+    "phones": [],
+    "location": {
+      "city": null,
+      "region": null,
+      "country": null
+    },
+    "links": {
+      "linkedin": null,
+      "github": null,
+      "portfolio": null,
+      "other": []
+    },
+    "headline": null,
+    "years_experience": null,
+    "skills": [
+      {
+        "name": "SQL",
+        "confidence": 0.9,
+        "sources": [
+          "csv:recruiters.csv"
+        ]
+      },
+      {
+        "name": "Excel",
+        "confidence": 0.81,
+        "sources": [
+          "csv:recruiters.csv"
+        ]
+      }
+    ],
+    "experience": [
+      {
+        "company": "Globex",
+        "title": "Data Analyst",
+        "start": null,
+        "end": "present",
+        "summary": null
+      }
+    ],
+    "education": [],
+    "provenance": [
+      {
+        "field": "full_name",
+        "source": "csv:recruiters.csv",
+        "method": "structured_field"
+      },
+      {
+        "field": "emails[0]",
+        "source": "csv:recruiters.csv",
+        "method": "structured_field"
+      },
+      {
+        "field": "skills[0]",
+        "source": "csv:recruiters.csv",
+        "method": "structured_field"
+      },
+      {
+        "field": "skills[1]",
+        "source": "csv:recruiters.csv",
+        "method": "structured_field"
+      },
+      {
+        "field": "experience[0]",
+        "source": "csv:recruiters.csv",
+        "method": "structured_field"
+      }
+    ],
+    "overall_confidence": 0.891
+  }
+]

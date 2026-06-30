@@ -1,0 +1,16 @@
+Ada Lovelace
+ada@analyticalengine.io | +44 20 7946 0958 | github.com/adalovelace | London, UK
+
+SUMMARY
+Principal engineer specializing in distributed systems and numerical computing.
+
+SKILLS
+Languages: Python, C++, JavaScript, TypeScript, SQL
+Infrastructure: Kubernetes, PostgreSQL, Docker
+
+EXPERIENCE
+Principal Engineer at Analytical Engines Ltd (March 2019 - Present)
+Senior Engineer at Babbage Systems (March 2014 - February 2019)
+
+EDUCATION
+University of London - BSc in Mathematics, 2010

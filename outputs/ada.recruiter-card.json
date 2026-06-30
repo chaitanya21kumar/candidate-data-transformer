@@ -1,0 +1,41 @@
+[
+  {
+    "full_name": "Ada Lovelace",
+    "primary_email": "ada@analyticalengine.io",
+    "phone": "+442079460958",
+    "headline": "Principal Software Engineer",
+    "country": "GB",
+    "skills": [
+      "JavaScript",
+      "Kubernetes",
+      "PostgreSQL",
+      "TypeScript",
+      "Distributed Systems",
+      "Python",
+      "C++",
+      "Docker",
+      "SQL",
+      "mentoring"
+    ],
+    "confidence": {
+      "full_name": 0.9988,
+      "primary_email": 0.9943,
+      "phone": 0.9696,
+      "headline": 0.88,
+      "country": 0.9979,
+      "skills": [
+        0.9957,
+        0.9957,
+        0.9957,
+        0.9924,
+        0.9771,
+        0.9661,
+        0.9364,
+        0.6375,
+        0.6375,
+        0.4208
+      ]
+    },
+    "overall_confidence": 0.9649
+  }
+]
