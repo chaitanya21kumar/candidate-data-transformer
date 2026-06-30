@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type-check
+        run: npm run typecheck
+
+      - name: Run tests
+        run: npm test
+
+      - name: Verify committed outputs are reproducible (determinism gate)
+        run: |
+          npm run build:outputs
+          git diff --exit-code outputs/ \
+            || (echo "::error::Committed outputs differ from a fresh run — pipeline is not deterministic or outputs are stale." && exit 1)
