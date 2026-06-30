@@ -45,6 +45,20 @@ describe('entity resolution', () => {
     expect(merge(sources)).toHaveLength(2);
   });
 
+  it('never bridges two different anchored people through a loose record (cross-key)', () => {
+    // Two distinct people (different emails): Sam Carter @ Acme and Sam Carter @ Globex.
+    // A note names "Sam Carter" with BOTH companies — it must not merge the two people.
+    const sources: RawSource[] = [
+      { type: 'csv', name: 'r.csv', content: 'Name,Email,Current Company,Title\nSam Carter,sam.a@x.io,Acme,Engineer\nSam Carter,sam.b@y.io,Globex,Engineer\n' },
+      { type: 'notes', name: 'n.txt', content: 'Name: Sam Carter\nWorked as Engineer at Acme and later Engineer at Globex.' },
+    ];
+    const profiles = merge(sources);
+    const emails = profiles.flatMap((p) => p.profile.emails).sort();
+    // The two anchored people stay separate (their two emails never co-occur in one profile).
+    expect(profiles.find((p) => p.profile.emails.includes('sam.a@x.io'))!.profile.emails).not.toContain('sam.b@y.io');
+    expect(emails).toEqual(['sam.a@x.io', 'sam.b@y.io']);
+  });
+
   it('leaves a note unmerged when its name+company is ambiguous across people', () => {
     const sources: RawSource[] = [
       { type: 'csv', name: 'r.csv', content: 'Name,Email,Current Company,Title\nJohn Smith,john.a@x.io,Acme Corp,Engineer\nJohn Smith,john.b@y.io,Acme Corp,Engineer\n' },

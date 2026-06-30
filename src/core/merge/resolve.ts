@@ -79,6 +79,23 @@ export function resolveEntities(fields: readonly NormalizedField[]): NormalizedF
   }
 
   // --- Phase 2: name+company, only to attach un-anchored records, unambiguously ---
+  // Track which clusters are "anchored" (contain a record with a strong identifier) and
+  // guard every phase-2 union so it can NEVER merge two anchored clusters — not even
+  // transitively through a loose record that matches two different people's name+company.
+  const clusterAnchored = new Map<string, boolean>();
+  for (const id of order) {
+    const root = uf.find(id);
+    clusterAnchored.set(root, (clusterAnchored.get(root) ?? false) || anchored.has(id));
+  }
+  const safeUnion = (a: string, b: string): void => {
+    const ra = uf.find(a);
+    const rb = uf.find(b);
+    if (ra === rb) return;
+    if (clusterAnchored.get(ra) && clusterAnchored.get(rb)) return; // refuse to bridge two people
+    uf.union(a, b);
+    clusterAnchored.set(uf.find(a), (clusterAnchored.get(ra) ?? false) || (clusterAnchored.get(rb) ?? false));
+  };
+
   const ncGroups = new Map<string, string[]>();
   for (const id of order) {
     for (const key of nameCompanyKeys(byRecord.get(id)!)) {
@@ -90,10 +107,10 @@ export function resolveEntities(fields: readonly NormalizedField[]): NormalizedF
     const loose = ids.filter((id) => !anchored.has(id));
     if (loose.length === 0) continue;
     // Union the un-anchored records sharing this name+company together.
-    for (let i = 1; i < loose.length; i++) uf.union(loose[0]!, loose[i]!);
-    // Attach them to an anchored identity only if there is exactly one.
+    for (let i = 1; i < loose.length; i++) safeUnion(loose[0]!, loose[i]!);
+    // Attach them to an anchored identity only if exactly one matches this name+company.
     const anchoredRoots = [...new Set(ids.filter((id) => anchored.has(id)).map((id) => uf.find(id)))];
-    if (anchoredRoots.length === 1) uf.union(anchoredRoots[0]!, loose[0]!);
+    if (anchoredRoots.length === 1) safeUnion(anchoredRoots[0]!, loose[0]!);
   }
 
   // Collect clusters, preserving first-seen order.
