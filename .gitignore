@@ -38,6 +38,3 @@ samples/_generated/
 web/dist/
 web/node_modules/
 web/engine.js
-
-# Local preview config
-.claude/
