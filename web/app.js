@@ -7,6 +7,8 @@ const SAMPLES = {
     '"Lovelace, Ada",Ada@AnalyticalEngine.io,ext. 4421,Analytical Engines Ltd,Principal Engineer,"London, United Kingdom","JS; PostgreSQL; k8s; Distributed Systems",linkedin.com/in/adalovelace,12',
   ats: JSON.stringify(
     {
+      source: 'greenhouse',
+      exported_at: 'from an ATS — note the field names below do NOT match our schema',
       applicant: {
         first_name: 'Ada',
         last_name: 'Lovelace',
@@ -43,20 +45,40 @@ const SAMPLES = {
       repos: [
         { name: 'analytical-engine', languages: { 'C++': 90000, Python: 24000 }, fork: false },
         { name: 'weaving', language: 'TypeScript', fork: false },
-        { name: 'forked', language: 'Go', fork: true },
+        { name: 'notes-on-the-engine', language: 'Python', fork: false },
+        { name: 'someone-elses-thing', language: 'Go', fork: true },
       ],
     },
     null,
     2,
   ),
   notes:
-    'Recruiter screen — strong systems background.\n' +
+    'Recruiter screen — 2026-06-15\n' +
+    '\n' +
+    'Candidate is sharp; strong systems background and a clear communicator.\n' +
     'Email: ada.lovelace@gmail.com\n' +
     'Phone: +44 20 7946 0958\n' +
     'Currently Principal Engineer at Analytical Engines.\n' +
     'Skills: Python, mentoring, distributed systems\n' +
     'Portfolio: https://ada.dev\n' +
     '12 years experience. Open to relocation.',
+  resume:
+    'Ada Lovelace\n' +
+    'ada@analyticalengine.io | +44 20 7946 0958 | github.com/adalovelace | London, UK\n' +
+    '\n' +
+    'SUMMARY\n' +
+    'Principal engineer specializing in distributed systems and numerical computing.\n' +
+    '\n' +
+    'SKILLS\n' +
+    'Languages: Python, C++, JavaScript, TypeScript, SQL\n' +
+    'Infrastructure: Kubernetes, PostgreSQL, Docker\n' +
+    '\n' +
+    'EXPERIENCE\n' +
+    'Principal Engineer at Analytical Engines Ltd (March 2019 - Present)\n' +
+    'Senior Engineer at Babbage Systems (March 2014 - February 2019)\n' +
+    '\n' +
+    'EDUCATION\n' +
+    'University of London - BSc in Mathematics, 2010',
 };
 
 // --- Output config presets ---
@@ -102,6 +124,7 @@ function init() {
   $('ats').value = SAMPLES.ats;
   $('github').value = SAMPLES.github;
   $('notes').value = SAMPLES.notes;
+  $('resume').value = SAMPLES.resume;
 
   const preset = $('preset');
   for (const name of Object.keys(PRESETS)) {
@@ -129,9 +152,10 @@ function loadPresetIntoConfig() {
 function gatherSources() {
   const map = [
     ['csv', 'csv', 'recruiter.csv'],
-    ['ats', 'ats_json', 'ats.json'],
+    ['ats', 'ats_json', 'greenhouse.ats.json'],
     ['github', 'github', 'github.json'],
     ['notes', 'notes', 'notes.txt'],
+    ['resume', 'resume', 'resume.txt'],
   ];
   const sources = [];
   for (const [id, type, name] of map) {
