@@ -1,0 +1,45 @@
+{
+  "name": "candidate-data-transformer",
+  "version": "1.0.0",
+  "description": "Multi-source candidate data transformer: messy heterogeneous inputs to one trustworthy canonical profile with provenance, calibrated confidence, and a config-driven projection layer.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Chaitanya Kumar",
+  "engines": {
+    "node": ">=18"
+  },
+  "bin": {
+    "transform": "./src/cli.ts"
+  },
+  "scripts": {
+    "transform": "tsx src/cli.ts",
+    "demo": "tsx src/cli.ts transform --inputs samples/ada --config configs/default.json",
+    "demo:custom": "tsx src/cli.ts transform --inputs samples/ada --config configs/recruiter-card.json",
+    "build:outputs": "tsx scripts/build-outputs.ts",
+    "bench": "tsx scripts/benchmark.ts",
+    "generate": "tsx scripts/generate.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "keywords": [
+    "data-engineering",
+    "etl",
+    "entity-resolution",
+    "data-quality",
+    "typescript",
+    "zod"
+  ],
+  "dependencies": {
+    "commander": "^12.1.0",
+    "i18n-iso-countries": "^7.11.3",
+    "libphonenumber-js": "^1.11.4",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.4",
+    "vitest": "^3.2.4"
+  }
+}

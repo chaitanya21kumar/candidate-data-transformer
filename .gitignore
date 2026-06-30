@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+*.tsbuildinfo
+
+# Continuity / handoff notes (kept local, never published)
+_handoff/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS / editor cruft
+.DS_Store
+.vscode/
+.idea/
+
+# Test / coverage artifacts
+coverage/
+.vitest/
+
+# Scratch
+scratch/
+tmp/
+
+# Generated scale-benchmark fixtures (large, reproducible via scripts/generate.ts)
+samples/_generated/
+
+# UI build artifacts
+web/dist/
+web/node_modules/
