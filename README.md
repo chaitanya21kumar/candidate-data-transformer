@@ -278,7 +278,7 @@ free-text notes scores far lower — and you can see exactly why. Full model in
 
 - **▶ Live demo:** **[candidate-data-transformer.netlify.app](https://candidate-data-transformer.netlify.app)** —
   paste sources, pick a config, and watch the canonical profile and projected output update side by side.
-- **📹 Walkthrough video (≈2 min):** <!-- VIDEO_LINK --> _coming with the submission_ — a screen recording running the
+- **📹 Walkthrough video (~6 min):** **[▶ Watch the demo](https://drive.google.com/file/d/1yIVULkmVxiSgaaICEi89vZVdkELrIoOF/view?usp=sharing)** — a screen recording running the
   pipeline end-to-end on the sample inputs, showing the default output and a custom-config output, and talking through
   one design decision (the canonical ⟂ projection split with config-driven validation) and one edge case (a phone
   conflict resolved by preferring `null` over a wrong value).
